@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页嵌入示例</title>
+    <style>
+        /* 容器样式 */
+        .iframe-container {
+            width: 100%;
+            height: 100vh; /* 全屏高度 */
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* 隐藏滚动条 */
+        }
+
+        /* 嵌入式框架样式 */
+        #embedded-site {
+            width: 100%;
+            height: 100%;
+            border: none; /* 去除边框 */
+        }
+
+        /* 可选：添加加载状态提示 */
+        .loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="iframe-container">
+        <!-- 替换下方src的网址为你想嵌入的网站 -->
+        <iframe 
+            id="embedded-site"
+            src="https://www.example.com" 
+            title="嵌入网站"
+            allowfullscreen
+            allow="fullscreen"
+        >
+            <p class="loading">正在加载内容...</p>
+        </iframe>
+    </div>
+
+    <script>
+        // 可选：添加加载完成事件
+        document.getElementById('embedded-site').onload = function() {
+            console.log('内容加载完成');
+        };
+
+        // 可选：处理跨域限制提示
+        window.onerror = function(message, url, line, column, error) {
+            if (message.includes('Blocked a frame')) {
+                console.log('该网站不允许被嵌入');
+            }
+        };
+    </script>
+</body>
+</html>
